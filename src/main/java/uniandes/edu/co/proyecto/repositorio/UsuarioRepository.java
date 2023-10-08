@@ -19,7 +19,7 @@ public interface UsuarioRepository extends JpaRepository <Usuario, Integer>{
     Collection<Usuario> darUsuarios();
 
     @Query(value = "SELECT * FROM usuarios WHERE idUsuario= :idUsuario", nativeQuery = true)
-    Usuario darUsuario(@Param("idUsuario") long idUsuario);
+    Usuario darUsuario(@Param("idUsuario") Integer idUsuario);
 
     @Modifying
     @Transactional
@@ -29,10 +29,10 @@ public interface UsuarioRepository extends JpaRepository <Usuario, Integer>{
     @Modifying
     @Transactional
     @Query(value ="UPDATE usuarios SET nombre= :nombre, correo= :correo, rol= :rol, nombreHotel= :nombreHotel WHERE idUsuario = :idUsuario", nativeQuery = true)
-    void actualizarUsuario(@Param("idUsuario") long idUsuario, @Param("nombre") String nombre, @Param("correo") String correo, @Param("rol") TipoUsuario rol, @Param("nombreHotel") Hotel nombreHotel);
+    void actualizarUsuario(@Param("idUsuario") Integer idUsuario, @Param("nombre") String nombre, @Param("correo") String correo, @Param("rol") TipoUsuario rol, @Param("nombreHotel") Hotel nombreHotel);
 
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM usuarios  WHERE idUsuario= :idUsuario", nativeQuery = true)
-    void eliminarUsuario(@Param("idUsuario") long idUsuario);
+    void eliminarUsuario(@Param("idUsuario") Integer idUsuario);
 }

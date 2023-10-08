@@ -1,6 +1,6 @@
 CREATE TABLE cuentas_c (
     idcuenta     INTEGER NOT NULL,
-    estado       CHAR(1) NOT NULL,
+    estado       NUMBER NOT NULL,
     checkin      TIMESTAMP NOT NULL,
     checkout     TIMESTAMP NOT NULL,
     idhabitacion INTEGER NOT NULL
@@ -57,7 +57,7 @@ ALTER TABLE gimnasios ADD CONSTRAINT gimnasios_pk PRIMARY KEY ( idservicio );
 CREATE TABLE habitaciones (
     idhabitacion INTEGER NOT NULL,
     capacidad    INTEGER NOT NULL,
-    disponible   CHAR(1) NOT NULL,
+    disponible   NUMBER NOT NULL,
     tipo         VARCHAR2(255) NOT NULL,
     dotacion     VARCHAR2(4000) NOT NULL,
     precionoche  INTEGER NOT NULL,
@@ -113,7 +113,7 @@ CREATE TABLE planes_c (
     fechainicial         DATE NOT NULL,
     durancion            INTEGER NOT NULL,
     valorfinal           NUMBER NOT NULL,
-    valido               CHAR(1) NOT NULL
+    valido               NUMBER NOT NULL
 );
 
 ALTER TABLE planes_c ADD CONSTRAINT planes_c_pk PRIMARY KEY ( idplanconsumo );
@@ -123,9 +123,9 @@ CREATE TABLE prestamos (
     utensilio         VARCHAR2(255) NOT NULL,
     cantidad          INTEGER NOT NULL,
     idcuenta          INTEGER NOT NULL,
-    enprestamo        CHAR(1) NOT NULL,
+    enprestamo        NUMBER NOT NULL,
     costopenalizacion NUMBER NOT NULL,
-    estado            CHAR(1) NOT NULL
+    estado            NUMBER NOT NULL
 );
 
 ALTER TABLE prestamos ADD CONSTRAINT prestamos_pk PRIMARY KEY ( idservicio );
@@ -393,3 +393,11 @@ ALTER TABLE usuarios
     ADD CONSTRAINT usuarios_hoteles_fk FOREIGN KEY ( nombrehotel )
         REFERENCES hoteles ( nombre )
             ON DELETE CASCADE;
+
+CREATE SEQUENCE parranderos_sequence
+  START WITH 1
+  INCREMENT BY 1
+  MINVALUE 1
+  MAXVALUE 999999999
+  NOCYCLE
+  CACHE 20;

@@ -1,6 +1,5 @@
 package uniandes.edu.co.proyecto.modelo;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,34 +14,34 @@ public class Usuario {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer idUsuario;
+    private Integer idusuario;
     
     private String nombre;
     private String correo;
-    private TipoUsuario rol;
+    private String rol;
 
     @ManyToOne
-    @JoinColumn(name = "nombreHotel", referencedColumnName = "nombre")
-    private Hotel nombreHotel;
+    @JoinColumn(name = "nombrehotel", referencedColumnName = "nombre")
+    private Hotel nombrehotel;
 
     public Usuario(){;}
     // Constructor
-    public Usuario(String nombre, String correo, TipoUsuario rol, Hotel nombreHotel){
+    public Usuario(String nombre, String correo, String rol, Hotel nombrehotel){
         this.nombre=nombre;
         this.correo=correo; 
         this.rol=rol;
-        this.nombreHotel=nombreHotel; 
+        this.nombrehotel=nombrehotel; 
     }
 
     
 
     //Getters and Setters
-    public Integer getIdUsuario() {
-        return idUsuario;
+    public Integer getIdusuario() {
+        return idusuario;
     }
 
-    public void setId(Integer idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdusuario(Integer id) {
+        this.idusuario= id;
     }
 
     public String getNombre() {
@@ -61,22 +60,32 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public TipoUsuario getRol() {
+    public String getRol() {
         return rol;
     }
 
-    public void setRol(TipoUsuario rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
 
-    public Hotel getNombreHotel() {
-        return nombreHotel;
+    public Hotel getNombrehotel() {
+        return nombrehotel;
     }
 
-    public void setNombreHotel(Hotel nombreHotel) {
-        this.nombreHotel = nombreHotel;
+    public void setNombrehotel(Hotel nombrehotel) {
+        this.nombrehotel = nombrehotel;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "idUsuario=" + idusuario +
+                ", nombre='" + nombre + '\'' +
+                ", correo='" + correo + '\'' +
+                ", rol=" + rol +
+                ", nombreHotel=" + nombrehotel.getNombre() +
+                '}';
+    }
 
     
 }
