@@ -2,14 +2,13 @@ package uniandes.edu.co.proyecto;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import uniandes.edu.co.proyecto.modelo.CuentaConsumo;
 import uniandes.edu.co.proyecto.modelo.Hotel;
-import uniandes.edu.co.proyecto.modelo.Internet;
-import uniandes.edu.co.proyecto.modelo.Servicio;
-import uniandes.edu.co.proyecto.repositorio.CuentaConsumoRepository;
+import uniandes.edu.co.proyecto.modelo.TipoUsuario;
+import uniandes.edu.co.proyecto.modelo.Usuario;
+
 import uniandes.edu.co.proyecto.repositorio.HotelRepository;
-import uniandes.edu.co.proyecto.repositorio.InternetRepository;
-import uniandes.edu.co.proyecto.repositorio.ServicioRepository;
+import uniandes.edu.co.proyecto.repositorio.UsuarioRepository;
+
 
 
 
@@ -24,7 +23,7 @@ import org.springframework.boot.SpringApplication;
 public class ProyectoApplication implements CommandLineRunner{
 
 	@Autowired
-	private HotelRepository hotelRepository;
+	private UsuarioRepository usuarioRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoApplication.class, args);
@@ -32,10 +31,10 @@ public class ProyectoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		Collection<Hotel> hoteles = hotelRepository.darHoteles();
-		for (Hotel h: hoteles) 
+		Collection<Usuario> items = usuarioRepository.darUsuarios();
+		for (Usuario i: items) 
 		{
-			System.out.println(h);
+			System.out.println(i);
 		}
 	}
 }

@@ -14,24 +14,25 @@ import uniandes.edu.co.proyecto.modelo.Usuario;
 
 public interface UsuarioRepository extends JpaRepository <Usuario, Integer>{
     
-    @Query(value = "SELECT * FROM usuarios", nativeQuery=true)
+
+    @Query(value = "SELECT * FROM usuarios", nativeQuery = true)
     Collection<Usuario> darUsuarios();
 
-    @Query(value= "SELECT * FROM usuarios WHERE idUsuario= :idUsuario", nativeQuery=true)
-    Usuario darUsuario(@Param("idUsuario") Integer idUsuario);
+    @Query(value = "SELECT * FROM usuarios WHERE idUsuario= :idUsuario", nativeQuery = true)
+    Usuario darUsuario(@Param("idUsuario") long idUsuario);
 
     @Modifying
     @Transactional
-    @Query(value= "INSERT INTO usuarios(idUsuario, nombre, correo, rol, id_hotel) VALUES (parranderos_sequence.nextval, :nombre, :correo, :rol, :nombreHotel)", nativeQuery=true)
+    @Query(value = "INSERT INTO usuarios(idUsuario, nombre, correo, rol, nombrehotel) VALUES (parranderos_sequence.nextval, :nombre, :correo, :rol, :nombreHotel)", nativeQuery = true)
     void insertarUsuario(@Param("nombre") String nombre, @Param("correo") String correo, @Param("rol") TipoUsuario rol, @Param("nombreHotel") Hotel nombreHotel);
 
     @Modifying
     @Transactional
-    @Query(value ="UPDATE usuarios SET nombre= :nombre, correo= :correo, rol= :rol idHotel= :idHotel WHERE idUsuario = :idUsuario", nativeQuery = true)
-    void actualizarUsuario(@Param("idUsuario") Integer idUsuario, @Param("nombre") String nombre, @Param("correo") String correo, @Param("rol") TipoUsuario rol, @Param("nombreHotel") Hotel nombreHotel);
+    @Query(value ="UPDATE usuarios SET nombre= :nombre, correo= :correo, rol= :rol, nombreHotel= :nombreHotel WHERE idUsuario = :idUsuario", nativeQuery = true)
+    void actualizarUsuario(@Param("idUsuario") long idUsuario, @Param("nombre") String nombre, @Param("correo") String correo, @Param("rol") TipoUsuario rol, @Param("nombreHotel") Hotel nombreHotel);
 
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM usuarios  WHERE idUsuario= :idUsuario", nativeQuery = true)
-    void eliminarUsuario(@Param("idUsuario") Integer idUsuario);
+    void eliminarUsuario(@Param("idUsuario") long idUsuario);
 }
